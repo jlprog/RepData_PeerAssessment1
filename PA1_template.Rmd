@@ -7,19 +7,33 @@ output:
 
 
 ## Loading and preprocessing the data
-
+```{r loaddata}
+library(dplyr)
+library(lubridate)
+activity <- read.csv("activity.csv")
+```
 
 
 ## What is mean total number of steps taken per day?
+```{r}
+library()
+mean_steps <- activity %>% group_by(date) %>% summarize(avg=mean(steps,na.rm=TRUE))
 
+```
 
 
 ## What is the average daily activity pattern?
-
-
+```{r}
+mutate(activity, date = ymd(date))
+```
 
 ## Imputing missing values
-
+```{r}
+```
 
 
 ## Are there differences in activity patterns between weekdays and weekends?
+
+```{r}
+library(d)
+```
