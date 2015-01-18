@@ -1,4 +1,9 @@
-# Reproducible Research: Peer Assessment 1
+---
+title: "Reproducible Research: Peer Assessment 1"
+output: 
+  html_document:
+    keep_md: true
+---
 
 
 ```r
@@ -25,28 +30,10 @@ median_total_steps <- median(total_steps$steps)
 Here is the histogram of the total steps per day
 
 ```r
-hist(total_steps$steps,main="Histogram of Total Steps Per Day", xlab="total_steps",title="Histogram of Total Steps Per Day")
+hist(total_steps$steps,main="Histogram of Total Steps Per Day", xlab="total_steps")
 ```
 
-```
-## Warning in plot.window(xlim, ylim, "", ...): "title" is not a graphical
-## parameter
-```
-
-```
-## Warning in title(main = main, sub = sub, xlab = xlab, ylab = ylab, ...):
-## "title" is not a graphical parameter
-```
-
-```
-## Warning in axis(1, ...): "title" is not a graphical parameter
-```
-
-```
-## Warning in axis(2, ...): "title" is not a graphical parameter
-```
-
-![](PA1_template_files/figure-html/total_steps_per_day-1.png) 
+![plot of chunk total_steps_per_day](figure/total_steps_per_day-1.png) 
 
 The mean of total steps per day is 10766.19 and the median of the total steps per day is 10765
 
@@ -66,7 +53,7 @@ Here is the time series plot of the average number of steps during  the 5-minute
 plot(steps~interval,data=avg_steps, main="5-minute Interval Avergae Number of Steps")
 ```
 
-![](PA1_template_files/figure-html/time_series_avg_steps_5_min_interval-1.png) 
+![plot of chunk avg_steps_interval](figure/avg_steps_interval-1.png) 
 
 The interval 835 contains the maximum number of steps
 
@@ -97,7 +84,7 @@ total_steps_new <- aggregate(steps~date,data=activity_new,sum)
 hist(total_steps_new$steps,main="Histogram of Total Steps Per Day (New Dataset)", xlab="total steps per day")
 ```
 
-![](PA1_template_files/figure-html/total_steps_filled_dataset-1.png) 
+![plot of chunk total_steps_new_data](figure/total_steps_new_data-1.png) 
 
 4 Calculate the  mean and median total number of steps taken per day of the new dataset
 
@@ -120,22 +107,6 @@ The imputing missing data doesn't affect the mean but increases the median.
 
 ```r
 library(dplyr)
-```
-
-```
-## 
-## Attaching package: 'dplyr'
-## 
-## The following object is masked from 'package:stats':
-## 
-##     filter
-## 
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union
-```
-
-```r
 isWeekend <- weekdays(activity_new$date) %in% c("Saturday","Sunday")
 activity_new$flags <- "weekday"
 activity_new[isWeekend,"flags"] <- "weekend"
@@ -151,4 +122,4 @@ library(lattice)
 xyplot(steps~as.numeric(interval)|flags,data=avg_steps_new,layout=c(1,2),type="l",ylab="Number of Steps",xlab="Interval",main="5-minute Interval Average Number of Steps(Weekday/Weekend)")
 ```
 
-![](PA1_template_files/figure-html/avg_steps_weekend_weekday-1.png) 
+![plot of chunk avg_steps_weekend_weekday](figure/avg_steps_weekend_weekday-1.png) 

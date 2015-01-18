@@ -26,7 +26,7 @@ median_total_steps <- median(total_steps$steps)
 
 Here is the histogram of the total steps per day
 ```{r total_steps_per_day}
-hist(total_steps$steps,main="Histogram of Total Steps Per Day", xlab="total_steps",title="Histogram of Total Steps Per Day")
+hist(total_steps$steps,main="Histogram of Total Steps Per Day", xlab="total_steps")
 ```
 
 The mean of total steps per day is `r mean_total_steps` and the median of the total steps per day is `r median_total_steps`
@@ -41,7 +41,7 @@ max_steps_interval <- avg_steps[which.max(avg_steps$steps),"interval"]
 
 Here is the time series plot of the average number of steps during  the 5-minute interval across all days
 
-```{r time_series_avg_steps_5_min_interval}
+```{r avg_steps_interval}
 plot(steps~interval,data=avg_steps, main="5-minute Interval Avergae Number of Steps")
 ```
 
@@ -66,7 +66,7 @@ activity_new <- rbind(miss_data,activity[complete.cases(activity),])
 ```
 
 3 Make a histogram of the total number of steps taken each day
-```{r total_steps_filled_dataset}
+```{r total_steps_new_data}
 total_steps_new <- aggregate(steps~date,data=activity_new,sum)
 hist(total_steps_new$steps,main="Histogram of Total Steps Per Day (New Dataset)", xlab="total steps per day")
 ```
